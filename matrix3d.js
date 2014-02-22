@@ -105,7 +105,7 @@ ViewMachine = (function (VM, $) {
       m[3][2] += this.matrixData[5];
       return m;
     },
-    animate: function (dur, scale, rx, ry, rz, x , y, z, that) {
+    animate: function (dur, scale, rx, ry, rz, x , y, z) {
       var t = dur * 1000;
       var xvel = x/t;
       var yvel = y/t;
@@ -116,12 +116,13 @@ ViewMachine = (function (VM, $) {
       var rzvel = rz/t;
       var time;
       var offset;
+      var that = this;
       var dt;
       var total = 0;
       function anim (tx) {
         if (!offset){
           offset = tx;
-          window.requestAnimationFrame(anim);
+          (function (){window.requestAnimationFrame(anim);}());
         } else {
           if (t >= 0) {
             dt = tx - offset;
@@ -143,7 +144,7 @@ ViewMachine = (function (VM, $) {
           }
         }
       }
-      window.requestAnimationFrame(anim);
+      (function () {window.requestAnimationFrame(anim);}());
     }
   };
 
