@@ -26,6 +26,8 @@ ViewMachine = (function (VM, $) {
           }
         }
       }
+      this.css('transform', 'matrix3d(' + arr.join(',') + ')');
+      this.css('-moz-transform', 'matrix3d(' + arr.join(',') + ')');
       this.css('-webkit-transform', 'matrix3d(' + arr.join(',') + ')');
     },
     scale: function (n, m) {
