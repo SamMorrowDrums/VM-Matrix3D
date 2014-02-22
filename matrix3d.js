@@ -136,7 +136,7 @@ ViewMachine = (function (VM, $) {
               xvel = x;
               yvel = y;
               zvel = z;
-              scaleVel = scale;
+              //scaleVel = scale;
 
             } else {
               t -= dt;
