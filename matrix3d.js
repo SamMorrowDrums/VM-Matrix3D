@@ -129,7 +129,15 @@ ViewMachine = (function (VM, $) {
             dt = tx - offset;
             if (t - dt < 0){
               t = 0;
-              dt += t - dt;
+              dt = 1;
+              rxvel = rx;
+              ryvel = ry;
+              rzvel = rz;
+              xvel = x;
+              yvel = y;
+              zvel = z;
+              scaleVel = scale;
+
             } else {
               t -= dt;
               offset += dt;
@@ -142,6 +150,13 @@ ViewMachine = (function (VM, $) {
             m = that.scale(dt*scaleVel, m);
             m = that.translate(dt * xvel, dt * yvel, dt * zvel, m);
             that.applyMatrix(m);
+            scale -= dt*scaleVel;
+            rx -= dt * rxvel;
+            ry -= dt*ryvel;
+            rz -= dt * rzvel;
+            x -= dt * xvel;
+            y -= dt * yvel;
+            z -= dt * zvel;
             window.requestAnimationFrame(anim);
           } else {
             if (that.animEnd) {
