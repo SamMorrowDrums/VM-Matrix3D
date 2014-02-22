@@ -136,8 +136,6 @@ ViewMachine = (function (VM, $) {
               xvel = x;
               yvel = y;
               zvel = z;
-              //scaleVel = scale;
-
             } else {
               t -= dt;
               offset += dt;
@@ -150,7 +148,6 @@ ViewMachine = (function (VM, $) {
             m = that.scale(dt*scaleVel, m);
             m = that.translate(dt * xvel, dt * yvel, dt * zvel, m);
             that.applyMatrix(m);
-            scale -= dt*scaleVel;
             rx -= dt * rxvel;
             ry -= dt*ryvel;
             rz -= dt * rzvel;
