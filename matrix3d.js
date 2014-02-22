@@ -10,7 +10,6 @@ ViewMachine = (function (VM, $) {
     return [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
   };
   VM.matrixMethods = {
-    matrixData: [0,0,0,0,0,0,1, true],
     applyMatrix: function (matrix){
       if (matrix === undefined) {
         matrix = this.matrix;
@@ -122,7 +121,7 @@ ViewMachine = (function (VM, $) {
       function anim (tx) {
         if (!offset){
           offset = tx;
-          (function (){window.requestAnimationFrame(anim);}());
+          window.requestAnimationFrame(anim);
         } else {
           if (t >= 0) {
             dt = tx - offset;
@@ -144,7 +143,7 @@ ViewMachine = (function (VM, $) {
           }
         }
       }
-      (function () {window.requestAnimationFrame(anim);}());
+      window.requestAnimationFrame(anim);
     }
   };
 
@@ -152,6 +151,7 @@ ViewMachine = (function (VM, $) {
     var matrix = new VM.El(element, properties);
     matrix.matrix = VM.getMatrix();
     $.extend(matrix, VM.matrixMethods);
+    matrix.matrixData = [0,0,0,0,0,0,1, true];
     matrix.applyMatrix();
     return matrix;
   };
