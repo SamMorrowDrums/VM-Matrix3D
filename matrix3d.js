@@ -106,6 +106,7 @@ ViewMachine = (function (VM, $) {
       return m;
     },
     animate: function (dur, scale, rx, ry, rz, x , y, z) {
+      (function () {
       var t = dur * 1000;
       var xvel = x/t;
       var yvel = y/t;
@@ -145,6 +146,7 @@ ViewMachine = (function (VM, $) {
         }
       }
       window.requestAnimationFrame(anim);
+    }());
     }
   };
 
