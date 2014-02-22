@@ -125,11 +125,16 @@ ViewMachine = (function (VM, $) {
           offset = tx;
           window.requestAnimationFrame(anim);
         } else {
-          if (t >= 0) {
+          if (t > 0) {
             dt = tx - offset;
-            t -= dt;
-            offset += dt;
-            total += dt;
+            if (t - dt < 0){
+              t = 0;
+              dt += t - dt;
+            } else {
+              t -= dt;
+              offset += dt;
+              total += dt;
+            }
             var m = VM.getMatrix();
             m = that.rotateX(dt * rxvel, m);
             m = that.rotateY(dt*ryvel, m);
